@@ -26,6 +26,6 @@ readMueval ExitSuccess out _
     | otherwise = Left "Unable to get type and value"
 readMueval (ExitFailure errorCode) out err = Left $ case errorCode of
     1 | err == "mueval-core: Time limit exceeded\n" -> "Time limit exceeded"
-    1 -> T.unlines $ drop 2 $ T.lines out
+    1 -> T.unlines $ T.lines out
     -9 -> "Time limit exceeded"
     _  -> out <> "\n" <> err
